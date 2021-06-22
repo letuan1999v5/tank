@@ -17,6 +17,7 @@ public class Wall {
         loadImage();
         this.posiX = positionX;
         this.posiY = positionY;
+
     }
 
     public void loadImage(){

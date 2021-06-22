@@ -9,6 +9,7 @@ import java.awt.image.ImageObserver;
 import java.awt.image.ImageProducer;
 import java.util.ArrayList;
 import javax.swing.*;
+
 /*
  * GameBoardPanel.java
  *
@@ -31,6 +32,7 @@ public class GameBoardPanel extends JPanel {
     private static ArrayList<Tank> tanks;
     private boolean gameStatus;
     private Wall wall1, wall2, wall3;
+
 
     public GameBoardPanel(Tank tank,Client client,  Wall wall1, Wall wall2, Wall wall3, boolean gameStatus)
     {
@@ -55,6 +57,7 @@ public class GameBoardPanel extends JPanel {
     public void paintComponent(Graphics gr) {
         super.paintComponent(gr);
         Graphics2D g=(Graphics2D)gr;
+
  
         g.setColor(new Color(179,226,131));
         g.fillRect(0,0, getWidth(),getHeight());

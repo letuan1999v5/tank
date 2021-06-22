@@ -3,6 +3,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Arrays;
 import javax.swing.ImageIcon;
+import java.util.Random;
 /*
  * Tank.java
  *
@@ -23,11 +24,13 @@ public class Tank {
     private Bomb bomb[]=new Bomb[1000];
     private int curBomb=0;
     private int tankID;
-    private int posiX=-1,posiY=-1;
+    private int posiX=250,posiY=250;
     private int direction=1;
     private String team;
     private float velocityX=0.03125f,velocityY=0.03125f;
-    private int width=559,height=473;
+    private int width=529,height=473;
+    private Wall wall1, wall2, wall3;
+//    Random generate = new Random();
 
     public int getDirection() 
     {
@@ -35,23 +38,41 @@ public class Tank {
     }
     
     /** Creates a new instance of Tank */
-    public Tank(String team)
+    public Tank(String team, Wall wall1, Wall wall2, Wall wall3)
     {
         // random ra 1 vi tri nam trong ban do
-        while(posiX<70|posiY<50|posiY>height-43|posiX>width-43)
+
+        do
         {
-            posiX=(int)(Math.random()*width);
-            posiY=(int)(Math.random()*height);
-        }
+            posiX = new Random().nextInt(width-100)+70;
+            posiY = new Random().nextInt(height-100) +70;
+            System.out.println("rand -  " +posiX + " /" + posiY);
+        }while(posiX>100&&posiX<370&&posiY>100&&posiY<400);
         this.team = team;
+        this.wall1 = wall1;
+        this.wall2 = wall2;
+        this.wall3 = wall3;
 
         loadImage(4);
-
     }
+
+//    public Tank(Wall wall1, Wall wall2, Wall wall3){
+//        this.wall1 = wall1;
+//        this.wall2 = wall2;
+//        this.wall3 = wall3;
+//    }
+
     public Tank(int x,int y,int dir,int id, int indexImage, String team)
     {
         posiX=x;
         posiY=y;
+        while (checkCollision(this.posiX, this.posiY)){
+            do
+            {
+                posiX = new Random().nextInt(width-100)+70;
+                posiY = new Random().nextInt(height-100) +70;
+            }while(posiX>100&&posiX<370&&posiY>100&&posiY<400);
+        }
         tankID=id;
         direction=dir;
         this.team = team;
@@ -107,14 +128,14 @@ public class Tank {
             {
                 posiX=70;
             }
-            else if(checkCollision(temp, posiY) == false&&temp < 194 && temp > 175 && posiY >106 && posiY < 194){
-                posiX = 194;
+            else if(checkCollision(temp, posiY) == false&&temp < (wall1.getXposition()+44) && temp > (wall1.getXposition()) && posiY > (wall1.getYposition()-44) && posiY < (wall1.getYposition()+44)){
+                posiX = wall1.getXposition()+44;
             }
-            else if(checkCollision(temp, posiY) == false&&temp < 284 && temp > 270 && posiY >257 && posiY < 339){
-                posiX = 284;
+            else if(checkCollision(temp, posiY) == false&&temp < (wall2.getXposition()+44) && temp > (wall2.getXposition()) && posiY > (wall2.getYposition()-44) && posiY < (wall2.getYposition()+44)){
+                posiX = wall2.getXposition()+44;
             }
-            else if(checkCollision(temp, posiY) == false&&temp < 453 && temp > 425 && posiY >172 && posiY < 259){
-                posiX = 453;
+            else if(checkCollision(temp, posiY) == false&&temp < (wall3.getXposition()+44) && temp > (wall3.getXposition()) && posiY > (wall3.getYposition()-44) && posiY < (wall3.getYposition()+44)){
+                posiX = wall3.getXposition()+44;
             }
             else if(checkCollision(temp,posiY)==false)
             {
@@ -124,6 +145,19 @@ public class Tank {
         }
         
     }
+
+//    public void checkInitCollision(int posiX, int posiY){
+//        int check = 0;
+//        do {
+//            if(checkCollision(posiX, posiY) == false){
+//                check = 1;
+//            }
+//            else{
+//
+//            }
+//        }while (check == 0);
+//    }
+
     public void moveRight()
     {
         if(direction==1|direction==3)
@@ -141,15 +175,14 @@ public class Tank {
             
                 posiX=width-43+20;
             }
-            else if(checkCollision(temp, posiY) == false&&temp > 104 && temp < 120 && posiY >106 && posiY < 194){
-                posiX = 104;
+            else if(checkCollision(temp, posiY) == false&&temp > (wall1.getXposition()-44) && temp < wall1.getXposition() && posiY >(wall1.getYposition()-44) && posiY < (wall1.getYposition()+44)){
+                posiX = wall1.getXposition()-44;
             }
-            else if(checkCollision(temp, posiY) == false&&temp > 197 && temp < 215 && posiY >257 && posiY < 339){
-                posiX = 196;
+            else if(checkCollision(temp, posiY) == false&&temp > (wall2.getXposition()-44) && temp < wall2.getXposition() && posiY >(wall2.getYposition()-44) && posiY < (wall2.getYposition()+44)){
+                posiX = wall2.getXposition()-44;
             }
-            else if(checkCollision(temp, posiY) == false&&temp > 368 && temp < 385 && posiY >172 && posiY < 259){
-                posiX = 368;
-                System.out.println("true");
+            else if(checkCollision(temp, posiY) == false&&temp > (wall3.getXposition()-44) && temp < wall3.getXposition() && posiY >(wall3.getYposition()-44) && posiY < (wall3.getYposition()+44)){
+                posiX = wall3.getXposition()-44;
             }
             else if(checkCollision(temp,posiY)==false)
             {
@@ -177,17 +210,16 @@ public class Tank {
                 {
                     posiY=50;
                 }
-                else if(checkCollision(posiX, temp) == false&&posiX > 104 && posiX < 197 && temp <193 && temp > 170){
-                    posiY = 193;
+                else if(checkCollision(posiX, temp) == false&&posiX > (wall1.getXposition()-44) && posiX < (wall1.getXposition()+44) && temp <(wall1.getYposition()+44) && temp > wall1.getYposition()){
+                    posiY = wall1.getYposition()+44;
                     System.out.println("true");
                 }
-                else if(checkCollision(posiX, temp) == false&&posiX > 191 && posiX < 285 && temp <343 && temp > 320){
-                    posiY = 343;
+                else if(checkCollision(posiX, temp) == false&&posiX > (wall2.getXposition()-44) && posiX < (wall2.getXposition()+44) && temp <(wall2.getYposition()+44) && temp > wall2.getYposition()){
+                    posiY = wall2.getYposition()+44;
                     System.out.println("true");
                 }
-                else if(checkCollision(posiX, temp) == false&&posiX > 368 && posiX < 462 && temp <258 && temp > 240){
-                    posiY = 258;
-                    System.out.println("true");
+                else if(checkCollision(posiX, temp) == false&&posiX > (wall3.getXposition()-44) && posiX < (wall3.getXposition()+44) && temp <(wall3.getYposition()+44) && temp > wall3.getYposition()){
+                    posiY = wall3.getYposition()+44;
                 }
                 else if(checkCollision(posiX,temp)==false)
                 {
@@ -213,16 +245,16 @@ public class Tank {
             {
               posiY=height-43+50;
             }
-            else if(checkCollision(posiX, temp) == false&&posiX > 104 && posiX < 197 && temp >107 && temp < 120){
-                posiY = 107;
+            else if(checkCollision(posiX, temp) == false&&posiX > (wall1.getXposition()-44) && posiX < wall1.getXposition()+44 && temp >(wall1.getYposition()-44) && temp < wall1.getYposition()){
+                posiY = wall1.getXposition()-44;
                 System.out.println("true");
             }
-            else if(checkCollision(posiX, temp) == false&&posiX > 191 && posiX < 285 && temp >257 && temp < 270){
-                posiY = 257;
+            else if(checkCollision(posiX, temp) == false&&posiX > (wall2.getXposition()-44) && posiX < wall2.getXposition()+44 && temp >(wall2.getYposition()-44) && temp < wall2.getYposition()){
+                posiY = wall2.getXposition()-44;
                 System.out.println("true");
             }
-            else if(checkCollision(posiX, temp) == false&&posiX > 368 && posiX < 462 && temp >173 && temp <190){
-                posiY = 173;
+            else if(checkCollision(posiX, temp) == false&&posiX > (wall3.getXposition()-44) && posiX < wall3.getXposition()+44 && temp >(wall3.getYposition()-44) && temp < wall3.getYposition()){
+                posiY = wall3.getXposition()-44;
                 System.out.println("true");
             }
             else if(checkCollision(posiX,temp)==false)
@@ -234,7 +266,7 @@ public class Tank {
     
     public void shot()
     {
-        bomb[curBomb]=new Bomb(this.getXposition(),this.getYposition(),direction,this.getTeam());
+        bomb[curBomb]=new Bomb(this.getXposition(),this.getYposition(),direction,this.getTeam(), this.wall1, this.wall2, this.wall3);
         bomb[curBomb].startBombThread(true);
         curBomb++;
     }
@@ -259,7 +291,7 @@ public class Tank {
 
     public void Shot() 
     {
-        bomb[curBomb]=new Bomb(this.getXposition(),this.getYposition(),direction,this.getTeam());
+        bomb[curBomb]=new Bomb(this.getXposition(),this.getYposition(),direction,this.getTeam(), this.wall1, this.wall2, this.wall3);
         
         bomb[curBomb].startBombThread(false);
         curBomb++;

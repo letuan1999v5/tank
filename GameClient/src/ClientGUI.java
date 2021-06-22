@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import java.util.Random;
 
 public class ClientGUI extends JFrame implements WindowListener
 {
@@ -35,6 +36,7 @@ public class ClientGUI extends JFrame implements WindowListener
     String portText;
     String nameText;
     String teamText;
+    Random randomGenerator = new Random();
 
     public ClientGUI(JFrame loginGUI, String ipaddressText, String portText, String nameText, String teamText)
     {
@@ -59,10 +61,13 @@ public class ClientGUI extends JFrame implements WindowListener
         scoreLabel.setBounds(10,90,100,25);
         client=Client.getGameClient();
 
-        clientTank=new Tank(teamText);
-        clientWall1=new Wall(150,150);
-        clientWall2=new Wall(240, 300);
-        clientWall3=new Wall(410, 215);
+//        clientWall1=new Wall(new Random().nextInt(50) +150,new Random().nextInt(150)+170);
+//        clientWall2=new Wall(new Random().nextInt(50)+275, new Random().nextInt(150)+170);
+//        clientWall3=new Wall(new Random().nextInt(50)+400, new Random().nextInt(150)+170);
+        clientWall1 = new Wall(165,190);
+        clientWall2 = new Wall(340,180);
+        clientWall3 = new Wall(245,325);
+        clientTank=new Tank(teamText, clientWall1, clientWall2, clientWall3);
         boardPanel=new GameBoardPanel(clientTank,client, clientWall1, clientWall2, clientWall3, false);
         userPanel=new UserPanel(nameText,scoreLabel,loginGUI, this);
         gameStatusPanel.add(scoreLabel);
