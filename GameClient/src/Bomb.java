@@ -116,6 +116,7 @@ public class Bomb {
         public void run() 
         {
             if(checkCollis) {
+                System.out.println("1Wall x = " + wall1.getXposition());
                 
                 if(direction==1) 
                 {
@@ -209,13 +210,22 @@ public class Bomb {
                     
                     while(xPosi>70) 
                     {
-                        if(yPosi > (wall1.getYposition()) && yPosi < (wall1.getYposition()+44) && xPosi > wall1.getXposition() && xPosi < (wall1.getXposition()+44)){
+//                        if(yPosi > (wall1.getYposition()) && yPosi < (wall1.getYposition()+44) && xPosi > wall1.getXposition() && xPosi < (wall1.getXposition()+44)){
+//                            break;
+//                        }
+//                        if(yPosi > (wall2.getYposition()) && yPosi < (wall2.getYposition()+44) && xPosi > wall2.getXposition() && xPosi < (wall2.getXposition()+44)){
+//                            break;
+//                        }
+//                        if(yPosi > (wall3.getYposition()) && yPosi < (wall3.getYposition()+44) && xPosi > wall3.getXposition() && xPosi < (wall3.getXposition()+44)){
+//                            break;
+//                        }
+                        if(yPosi > (190) && yPosi < (190+44) && xPosi > 165 && xPosi < 165+44){
                             break;
                         }
-                        if(yPosi > (wall2.getYposition()) && yPosi < (wall2.getYposition()+44) && xPosi > wall2.getXposition() && xPosi < (wall2.getXposition()+44)){
+                        if(yPosi > (180) && yPosi < (180+44) && xPosi > 340 && xPosi < (340+44)){
                             break;
                         }
-                        if(yPosi > (wall3.getYposition()) && yPosi < (wall3.getYposition()+44) && xPosi > wall3.getXposition() && xPosi < (wall3.getXposition()+44)){
+                        if(yPosi > (325) && yPosi < (325+44) && xPosi > 245 && xPosi < (245+44)){
                             break;
                         }
                         xPosi=(int)(xPosi-xPosi*velocityX);
@@ -236,19 +246,28 @@ public class Bomb {
             } 
             else 
             {
-                 if(direction==1) 
+                 if(direction==1)
                 {
                     System.out.println("up");
                     xPosi=17+xPosi;
                     while(yPosi>50) 
                     {
-                        if(yPosi > (wall1.getYposition()) && yPosi < (wall1.getYposition()+44) && xPosi > wall1.getXposition() && xPosi < (wall1.getXposition()+44)){
+//                        if(yPosi > (wall1.getYposition()) && yPosi < (wall1.getYposition()+44) && xPosi > wall1.getXposition() && xPosi < (wall1.getXposition()+44)){
+//                            break;
+//                        }
+//                        if(yPosi > (wall2.getYposition()) && yPosi < (wall2.getYposition()+44) && xPosi > wall2.getXposition() && xPosi < (wall2.getXposition()+44)){
+//                            break;
+//                        }
+//                        if(yPosi > (wall3.getYposition()) && yPosi < (wall3.getYposition()+44) && xPosi > wall3.getXposition() && xPosi < (wall3.getXposition()+44)){
+//                            break;
+//                        }
+                        if(yPosi > (190) && yPosi < (190+44) && xPosi > 165 && xPosi < 165+44){
                             break;
                         }
-                        if(yPosi > (wall2.getYposition()) && yPosi < (wall2.getYposition()+44) && xPosi > wall2.getXposition() && xPosi < (wall2.getXposition()+44)){
+                        if(yPosi > (180) && yPosi < (180+44) && xPosi > 340 && xPosi < (340+44)){
                             break;
                         }
-                        if(yPosi > (wall3.getYposition()) && yPosi < (wall3.getYposition()+44) && xPosi > wall3.getXposition() && xPosi < (wall3.getXposition()+44)){
+                        if(yPosi > (325) && yPosi < (325+44) && xPosi > 245 && xPosi < (245+44)){
                             break;
                         }
                         yPosi=(int)(yPosi-yPosi*velocityY);
@@ -269,13 +288,22 @@ public class Bomb {
                     xPosi+=30;
                     while(xPosi<564) 
                     {
-                        if(yPosi > (wall1.getYposition()) && yPosi < (wall1.getYposition()+44) && xPosi > wall1.getXposition() && xPosi < (wall1.getXposition()+44)){
+//                        if(yPosi > (wall1.getYposition()) && yPosi < (wall1.getYposition()+44) && xPosi > wall1.getXposition() && xPosi < (wall1.getXposition()+44)){
+//                            break;
+//                        }
+//                        if(yPosi > (wall2.getYposition()) && yPosi < (wall2.getYposition()+44) && xPosi > wall2.getXposition() && xPosi < (wall2.getXposition()+44)){
+//                            break;
+//                        }
+//                        if(yPosi > (wall3.getYposition()) && yPosi < (wall3.getYposition()+44) && xPosi > wall3.getXposition() && xPosi < (wall3.getXposition()+44)){
+//                            break;
+//                        }
+                        if(yPosi > (190) && yPosi < (190+44) && xPosi > 165 && xPosi < 165+44){
                             break;
                         }
-                        if(yPosi > (wall2.getYposition()) && yPosi < (wall2.getYposition()+44) && xPosi > wall2.getXposition() && xPosi < (wall2.getXposition()+44)){
+                        if(yPosi > (180) && yPosi < (180+44) && xPosi > 340 && xPosi < (340+44)){
                             break;
                         }
-                        if(yPosi > (wall3.getYposition()) && yPosi < (wall3.getYposition()+44) && xPosi > wall3.getXposition() && xPosi < (wall3.getXposition()+44)){
+                        if(yPosi > (325) && yPosi < (325+44) && xPosi > 245 && xPosi < (245+44)){
                             break;
                         }
                         xPosi=(int)(xPosi+xPosi*velocityX);
@@ -295,13 +323,22 @@ public class Bomb {
                     xPosi+=20;
                     while(yPosi<505) 
                     {
-                        if(yPosi > (wall1.getYposition()) && yPosi < (wall1.getYposition()+44) && xPosi > wall1.getXposition() && xPosi < (wall1.getXposition()+44)){
+//                        if(yPosi > (wall1.getYposition()) && yPosi < (wall1.getYposition()+44) && xPosi > wall1.getXposition() && xPosi < (wall1.getXposition()+44)){
+//                            break;
+//                        }
+//                        if(yPosi > (wall2.getYposition()) && yPosi < (wall2.getYposition()+44) && xPosi > wall2.getXposition() && xPosi < (wall2.getXposition()+44)){
+//                            break;
+//                        }
+//                        if(yPosi > (wall3.getYposition()) && yPosi < (wall3.getYposition()+44) && xPosi > wall3.getXposition() && xPosi < (wall3.getXposition()+44)){
+//                            break;
+//                        }
+                        if(yPosi > (190) && yPosi < (190+44) && xPosi > 165 && xPosi < 165+44){
                             break;
                         }
-                        if(yPosi > (wall2.getYposition()) && yPosi < (wall2.getYposition()+44) && xPosi > wall2.getXposition() && xPosi < (wall2.getXposition()+44)){
+                        if(yPosi > (180) && yPosi < (180+44) && xPosi > 340 && xPosi < (340+44)){
                             break;
                         }
-                        if(yPosi > (wall3.getYposition()) && yPosi < (wall3.getYposition()+44) && xPosi > wall3.getXposition() && xPosi < (wall3.getXposition()+44)){
+                        if(yPosi > (325) && yPosi < (325+44) && xPosi > 245 && xPosi < (245+44)){
                             break;
                         }
                         yPosi=(int)(yPosi+yPosi*velocityY);
@@ -320,6 +357,7 @@ public class Bomb {
                     while(xPosi>70) 
                     {
                         if(yPosi > (wall1.getYposition()) && yPosi < (wall1.getYposition()+44) && xPosi > wall1.getXposition() && xPosi < (wall1.getXposition()+44)){
+                            System.out.println("Y position = " + wall1.getYposition());
                             break;
                         }
                         if(yPosi > (wall2.getYposition()) && yPosi < (wall2.getYposition()+44) && xPosi > wall2.getXposition() && xPosi < (wall2.getXposition()+44)){
